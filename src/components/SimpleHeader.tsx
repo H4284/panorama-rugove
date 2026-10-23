@@ -1,7 +1,8 @@
 import { copy, type Language } from "@/content";
-import { homePath, otherLanguage, privacyPath } from "@/lib/links";
+import { homePath } from "@/lib/links";
 
-export default function SimpleHeader({ language }: { language: Language }) {
+// switchHref: where the language switch goes (the same page in the other language).
+export default function SimpleHeader({ language, switchHref }: { language: Language; switchHref: string }) {
   const t = copy[language];
-  return <header className="site-header simple-header"><a className="logo" href={homePath(language)}>{t.logo}</a><a className="language" href={privacyPath(otherLanguage(language))}>{t.language}</a></header>;
+  return <header className="site-header simple-header"><a className="logo" href={homePath(language)}>{t.logo}</a><a className="language" href={switchHref}>{t.language}</a></header>;
 }
