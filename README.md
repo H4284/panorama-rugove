@@ -36,9 +36,10 @@ Copy `.env.example` to `.env` and fill in the values from the EmailJS dashboard.
 
 ### How the build is served
 
-- `pnpm build` runs `vite build`, then `scripts/write-locale-html.mjs`, which writes English copies of `index.html` (English `lang`, title, description, OG tags) to `dist/en.html` and `dist/en/privacy.html`. Cloudflare serves them at `/en` and `/en/privacy`; every other route gets the Albanian `dist/index.html`.
+- `pnpm build` runs `vite build`, then `scripts/write-locale-html.mjs`, which writes per-route copies of `index.html` with the right `lang`, title, description and OG tags: `dist/en.html` (`/en`), `dist/en/privacy.html` (`/en/privacy`) and `dist/privatesia.html` (`/privatesia`). Every other route gets the Albanian home `dist/index.html`.
 - There is deliberately **no `404.html`**, so Cloudflare Pages treats the site as a single-page app and serves `index.html` for unknown paths; the app then shows its own 404 page.
-- `public/_headers` sets basic security headers; `public/robots.txt` blocks crawlers until launch.
+- `public/_headers` sets basic security headers, and sends `X-Robots-Tag: noindex` on `https://panorama-rugove.pages.dev/*` so the Cloudflare hostname never competes with the real domain in search (this rule stays after launch). It assumes the Pages project is named `panorama-rugove`; if Cloudflare gives the project a different `*.pages.dev` hostname, update the rule. Cloudflare adds `noindex` to preview deployments by itself.
+- `public/robots.txt` blocks crawlers until launch.
 
 ### First-time setup
 

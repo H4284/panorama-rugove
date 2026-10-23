@@ -4,3 +4,7 @@
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: DENY
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+
+# Keep the production *.pages.dev hostname out of search results (the custom domain is the real site).
+https://panorama-rugove.pages.dev/*
+  X-Robots-Tag: noindex

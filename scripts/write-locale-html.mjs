@@ -1,7 +1,8 @@
-// Post-build: writes English copies of dist/index.html so /en and /en/privacy carry English
-// lang, title, description and OG tags before JavaScript runs (link previews don't run JS).
-// Cloudflare Pages serves dist/en.html at /en and dist/en/privacy.html at /en/privacy, without
-// a trailing-slash redirect. Every other route keeps the Albanian dist/index.html.
+// Post-build: writes per-route copies of dist/index.html so /en, /en/privacy and /privatesia carry
+// the right lang, title, description and OG tags before JavaScript runs (link previews don't run JS).
+// Cloudflare Pages serves dist/en.html at /en, dist/en/privacy.html at /en/privacy and
+// dist/privatesia.html at /privatesia, without a trailing-slash redirect. Every other route keeps
+// the Albanian home dist/index.html.
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -12,11 +13,13 @@ const dist = path.join(root, "dist");
 
 // Load the copy through Vite so the TypeScript source works on any Node version.
 const { module: content } = await runnerImport(path.join(root, "src/content.ts"), { configFile: false, logLevel: "error" });
+const sq = content.copy.sq.seo;
 const en = content.copy.en.seo;
 
 const pages = [
-  { file: "en.html", title: en.homeTitle, description: en.homeDescription },
-  { file: "en/privacy.html", title: en.privacyTitle, description: en.privacyDescription },
+  { file: "en.html", lang: "en", title: en.homeTitle, description: en.homeDescription },
+  { file: "en/privacy.html", lang: "en", title: en.privacyTitle, description: en.privacyDescription },
+  { file: "privatesia.html", lang: "sq", title: sq.privacyTitle, description: sq.privacyDescription },
 ];
 
 const escapeHtml = (value) => value.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -26,8 +29,8 @@ function replaceRequired(html, pattern, replacement, label) {
   return html.replace(pattern, () => replacement);
 }
 
-function localize(html, { title, description }) {
-  let out = replaceRequired(html, /<html lang="[^"]*">/, '<html lang="en">', "<html lang>");
+function localize(html, { lang, title, description }) {
+  let out = replaceRequired(html, /<html lang="[^"]*">/, `<html lang="${lang}">`, "<html lang>");
   out = replaceRequired(out, /<title>[^<]*<\/title>/, `<title>${escapeHtml(title)}</title>`, "<title>");
   out = replaceRequired(out, /<meta name="description" content="[^"]*"/, `<meta name="description" content="${escapeHtml(description)}"`, "meta description");
   out = replaceRequired(out, /<meta property="og:title" content="[^"]*"/, `<meta property="og:title" content="${escapeHtml(title)}"`, "og:title");
