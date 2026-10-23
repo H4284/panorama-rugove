@@ -3,7 +3,7 @@
 React 19 + Vite 8 + Tailwind CSS v4 (Preflight only; styling is hand-written CSS in `src/index.css`). Deployed to Cloudflare Pages from GitHub. Package manager: pnpm 10.34.3 (use `npx pnpm@10.34.3 …` if another version is active; on Windows run pnpm from PowerShell).
 
 ## Layout
-- `src/content.ts` — all copy for `sq` and `en`, typed `as const`. ⚑ in a string renders a "to be confirmed" tag.
+- `src/content.ts` — all copy for `sq` and `en`, typed `as const`. ⚑ in a string marks a fact the client still has to confirm (not shown on the site; keep it until confirmed).
 - `src/lib/links.ts` — phone, email, WhatsApp and route helpers.
 - `src/components/` — shared parts; `src/components/sections/` — one file per home-page section.
 - `src/pages/` — Home, Privacy, NotFound. `src/App.tsx` only picks the page from the path.

@@ -1,5 +1,6 @@
-// Renders a line of copy, replacing the ⚑ marker with a "to be confirmed" tag.
-export default function TaggedLine({ text, tag }: { text: string; tag: string }) {
+// Renders a line of copy that may contain the ⚑ marker. ⚑ marks a fact the client still has to
+// confirm; it stays in content.ts for tracking but is not shown to visitors (removed in step 11).
+export default function TaggedLine({ text }: { text: string }) {
   const [before, after = ""] = text.split("⚑");
-  return <><span>{before.trim()}</span>{text.includes("⚑") && <span className="tag">{tag}</span>}{after && <span> {after.trim()}</span>}</>;
+  return <><span>{before.trim()}</span>{after.trim() && <span> {after.trim()}</span>}</>;
 }
