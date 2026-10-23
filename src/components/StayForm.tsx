@@ -62,6 +62,6 @@ export default function StayForm({ language }: { language: Language }) {
     {field("adults", t.form.adults, "number", false, "1")}{field("children", t.form.children, "number", false, "0")}
     <label><span>{t.form.type}</span><select value={values.type} onChange={(event) => update("type", event.target.value)} {...invalidProps("type")} required><option value="" disabled />{t.form.types.map((type) => <option key={type}>{type}</option>)}</select>{errorText("type")}</label>
     {field("name", t.form.name)}{field("phone", t.form.phone, "tel")}{field("email", t.form.email, "email", true)}{field("message", t.form.message, "text", true)}
-    <label className="checkbox wide"><input type="checkbox" checked={values.consent} onChange={(event) => update("consent", event.target.checked)} {...invalidProps("consent")} required /><span>{t.form.consentBefore}<a href={privacyPath(language)}>{t.form.consentLink}</a></span>{errorText("consent")}</label>
+    <label className="checkbox wide"><input type="checkbox" checked={values.consent} onChange={(event) => update("consent", event.target.checked)} {...invalidProps("consent")} required /><span>{t.form.consentBefore}<a href={privacyPath(language)} target="_blank" rel="noopener">{t.form.consentLink}</a></span>{errorText("consent")}</label>
   </div><div className="form-actions"><button className="button" type="submit">{t.form.submit}</button><a href={whatsapp(formMessage)}>{t.form.alt}</a></div></form>;
 }

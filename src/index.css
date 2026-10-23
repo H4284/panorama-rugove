@@ -112,6 +112,8 @@ nav a:hover, .language:hover { text-decoration: underline; }
 .menu-drawer-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; }
 @media (max-width: 1024px) { .menu-toggle { display: inline-flex; } }
 @media (min-width: 1025px) { .menu-drawer { display: none; } }
+/* The header shows its own "Book" button above 767px, so the drawer only repeats it on phones. */
+@media (min-width: 768px) { .menu-drawer-actions { display: none; } }
 @media (max-width: 767px) { .menu-drawer { padding: 8px 18px 28px; } }
 
 .hero {

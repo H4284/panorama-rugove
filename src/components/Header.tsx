@@ -23,6 +23,6 @@ export default function Header({ language }: { language: Language }) {
   }, [menuOpen]);
 
   return <><header className="site-header"><a className="logo" href={homePath(language)}>{t.logo}</a><nav>{t.nav.map((item, index) => <a key={item} href={`#${navIds[index]}`}>{item}</a>)}</nav><div className="header-actions"><a className="language" href={homePath(otherLanguage(language))}>{t.language}</a><a className="button light-button" href="#kerkesa">{t.primary}</a><button ref={toggleRef} className="menu-toggle" type="button" aria-expanded={menuOpen} aria-controls="site-menu" onClick={() => setMenuOpen((open) => !open)}>{menuOpen ? t.menuClose : t.menu}</button></div>
-    <div className="menu-drawer" id="site-menu" hidden={!menuOpen}><nav aria-label={t.menu}>{t.nav.map((item, index) => <a key={item} href={`#${navIds[index]}`} onClick={closeMenu}>{item}</a>)}</nav><div className="menu-drawer-actions"><a className="language" href={homePath(otherLanguage(language))} onClick={closeMenu}>{t.language}</a><a className="button light-button" href="#kerkesa" onClick={closeMenu}>{t.primary}</a></div></div>
+    <div className="menu-drawer" id="site-menu" hidden={!menuOpen}><nav aria-label={t.menu}>{t.nav.map((item, index) => <a key={item} href={`#${navIds[index]}`} onClick={closeMenu}>{item}</a>)}</nav><div className="menu-drawer-actions"><a className="button light-button" href="#kerkesa" onClick={closeMenu}>{t.primary}</a></div></div>
   </header><Ridge /></>;
 }
