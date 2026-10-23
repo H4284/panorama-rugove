@@ -56,7 +56,8 @@ export default function StayForm({ language }: { language: Language }) {
     try {
       await sendRequest({
         language, arrival: values.arrival, departure: values.departure, adults: values.adults, children: values.children,
-        stay_type: values.type, name: values.name.trim(), phone: values.phone.trim(), email: values.email.trim(),
+        // The hotel always gets the stay type in Albanian; {{language}} tells them which language the guest used.
+        stay_type: copy.sq.form.types[(t.form.types as readonly string[]).indexOf(values.type)] ?? values.type, name: values.name.trim(), phone: values.phone.trim(), email: values.email.trim(),
         message: values.message.trim(), consent: values.consent ? "yes" : "no",
       });
       setSuccess(true);
