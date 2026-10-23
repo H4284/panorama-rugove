@@ -2,6 +2,7 @@
 
 Landing page for Hotel Restaurant Panorama-Rugovë (Shtupeq i Madh, Rugova, Pejë).
 React + Vite + Tailwind CSS v4 single-page app, originally exported from Figma Make.
+Production refactor done with Claude Opus 5.5 (`claude-opus-5-5`) in Claude Code.
 
 - Albanian: `/` · privacy at `/privatesia`
 - English: `/en` · privacy at `/en/privacy`
