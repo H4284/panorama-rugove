@@ -8,6 +8,8 @@ React 19 + Vite 8 + Tailwind CSS v4 (Preflight only; styling is hand-written CSS
 - `src/components/` — shared parts; `src/components/sections/` — one file per home-page section.
 - `src/pages/` — Home, Privacy, NotFound. `src/App.tsx` only picks the page from the path.
 - Routes: `/` and `/privatesia` (sq), `/en` and `/en/privacy` (en); anything else is NotFound.
+- `scripts/write-locale-html.mjs` runs after `vite build` and writes `dist/en.html` and `dist/en/privacy.html` with English meta from `copy.en.seo`. No `404.html` (Cloudflare Pages SPA fallback).
+- `public/_headers` (security headers), `public/robots.txt` (crawlers blocked until launch).
 
 ## Rules
 1. The design and copy are approved. The current visual output is the spec: no redesign, no new features.
