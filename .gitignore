@@ -1,0 +1,24 @@
+# Dependencies and build output
+node_modules/
+dist/
+build/
+.cache/
+.vite/
+vite.config.*.timestamp-*
+*.tsbuildinfo
+
+# Environment (secrets) — only .env.example is committed
+.env*
+!.env.example
+
+# Logs
+logs/
+*.log
+*-debug.log*
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
