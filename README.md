@@ -77,3 +77,20 @@ A domain missing from the list makes every send fail, and the form shows its err
 
 - Remove the `noindex` meta tag from `index.html` and the `Disallow: /` line from `public/robots.txt`.
 - Replace the placeholder favicon and the test photos.
+
+## Test photos — replace before launch
+
+The photo slots currently show **free Unsplash photos as test stand-ins**, not photos of the hotel. They are free to use under the [Unsplash License](https://unsplash.com/license) (attribution not required), but they must be replaced with the client's own photos before launch. Downloaded from Unsplash's CDN as WebP (hero 1600 px wide, others 1000 px). To replace one, overwrite the file in `public/images/` (or add a new file) and update its path and `width`/`height` in `src/photos.ts`. Alt texts live in `src/content.ts` (`photoAlt`, and `roomNames` for the rooms).
+
+| Slot | File | Unsplash photo | Photographer |
+| --- | --- | --- | --- |
+| P-01 hero | `public/images/test-p01-hero.webp` | https://unsplash.com/photos/2XDsKxuRv-s | Waldemar Brandt |
+| P-02 double room | `public/images/test-p02-double-room.webp` | https://unsplash.com/photos/nVDaaKMtiMo | Annie Spratt |
+| P-03 triple room | `public/images/test-p03-triple-room.webp` | https://unsplash.com/photos/hjo94-g9tYI | Grace Anne Bobadilla |
+| P-04 quadruple room | `public/images/test-p04-quadruple-room.webp` | https://unsplash.com/photos/80m7BBm3cYI | Grace Anne Bobadilla |
+| P-05 apartment | `public/images/test-p05-apartment.webp` | https://unsplash.com/photos/xtaE1E3si6s | Pratik Bachhav |
+| P-06 villa | `public/images/test-p06-villa.webp` | https://unsplash.com/photos/St0CebsccjA | Sophia DeWald |
+| P-07 restaurant | `public/images/test-p07-restaurant.webp` | https://unsplash.com/photos/voGMbiNIYqs | Vanessa Zhu |
+| P-08 verandas | `public/images/test-p08-verandas.webp` | https://unsplash.com/photos/wKHoG0Xg1SM | Polina Kuzovkova |
+| P-09 dishes | `public/images/test-p09-dishes.webp` | https://unsplash.com/photos/fcOaa6j4cUo | Jovan Vasiljević |
+| P-10 surroundings | `public/images/test-p10-surroundings.webp` | https://unsplash.com/photos/k3BbV6r_gb4 | Shpëtim Ujkani |

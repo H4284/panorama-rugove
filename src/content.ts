@@ -13,6 +13,8 @@ export const copy = {
     heroText: "Mali në dritare, ushqimi nga fshati. Hotel me restorant mbi Shtupeqin e Madh.",
     heroSecondary: "Shkruani në WhatsApp",
     heroPhoto: "FOTO NGA KLIENTI — pamja nga hoteli (P-01)",
+    // Alt text for the photos (step 6), taken from the placeholder labels; room photos use roomNames.
+    photoAlt: { hero: "Pamja nga hoteli", restaurant: ["Restoranti", "Verandat", "Gatimet"], setting: "Rrethina" },
     introTitle: "Hotel dhe restorant në një vend",
     introText: "Panorama-Rugovë ka dhoma, një apartament dhe vilë, si dhe restorant me ushqim tradicional. Ndodhet në Shtupeq të Madh, në luginën e Rugovës.",
     facts: ["16 dhoma", "Hyrja 14:00 · Dalja 12:00", "12 km nga Peja"],
@@ -123,6 +125,7 @@ export const copy = {
     heroText: "The mountain at your window, food from the village. A hotel and restaurant above Shtupeq i Madh.",
     heroSecondary: "Message us on WhatsApp",
     heroPhoto: "CLIENT PHOTO — view from the hotel (P-01)",
+    photoAlt: { hero: "View from the hotel", restaurant: ["The restaurant", "The verandas", "The dishes"], setting: "The surroundings" },
     introTitle: "A hotel and a restaurant in one place",
     introText: "Panorama-Rugovë has rooms, an apartment and a villa, and a restaurant serving traditional food. It sits in Shtupeq i Madh, in the Rugova valley.",
     facts: ["16 rooms", "Check-in 14:00 · Check-out 12:00", "12 km from Pejë"],
