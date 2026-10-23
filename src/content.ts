@@ -29,6 +29,8 @@ export const copy = {
     ],
     roomNames: ["Dhomë dyshe", "Dhomë treshe", "Dhomë katërshe", "Apartament", "Vilë"],
     roomCta: "Pyet për këtë dhomë",
+    // Added in step 10 — client to review the Albanian wording.
+    reviewsTitle: "Çfarë thonë mysafirët", ratingLabel: "{n} nga 5 yje",
     roomNote: "Hyrja nga ora 14:00, dalja deri në 12:00. Për çmimet dhe disponueshmërinë, na shkruani ose na telefononi.",
     roomPhoto: "FOTO NGA KLIENTI — {dhoma} ({photo})",
     confirm: "për t'u konfirmuar",
@@ -138,6 +140,7 @@ export const copy = {
     ],
     roomNames: ["Double room", "Triple room", "Quadruple room", "Apartment", "Villa"],
     roomCta: "Ask about this room",
+    reviewsTitle: "What guests say", ratingLabel: "{n} out of 5 stars",
     roomNote: "Check-in from 14:00, check-out by 12:00. For prices and availability, message or call us.",
     roomPhoto: "CLIENT PHOTO — {room} ({photo})", confirm: "to be confirmed",
     formTitle: "Request a room",

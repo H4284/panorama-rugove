@@ -15,7 +15,7 @@ React 19 + Vite 8 + Tailwind CSS v4 (Preflight only; styling is hand-written CSS
 1. The design and copy are approved. The current visual output is the spec: no redesign, no new features.
 2. No new packages without asking (`@emailjs/browser` is the only approved addition).
 3. Keep existing CSS and class names. Don't rewrite or "clean up" styling.
-4. Never invent facts (phone, prices, hours, capacities, legal text). Keep every ⚑ / "to be confirmed" marker.
+4. Never invent facts (phone, prices, hours, capacities, legal text) and never write guest reviews: `src/reviews.ts` takes only real, verbatim reviews supplied by the client. Keep every ⚑ / "to be confirmed" marker.
 5. Secrets only in `.env` (`VITE_EMAILJS_*`); `.env.example` holds names only. Never commit `.env`.
 6. Make surgical changes; touch only what the task needs.
 7. `pnpm build` must pass before every commit. Never push.

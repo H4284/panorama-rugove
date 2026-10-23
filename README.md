@@ -94,3 +94,9 @@ The photo slots currently show **free Unsplash photos as test stand-ins**, not p
 | P-08 verandas | `public/images/test-p08-verandas.webp` | https://unsplash.com/photos/wKHoG0Xg1SM | Polina Kuzovkova |
 | P-09 dishes | `public/images/test-p09-dishes.webp` | https://unsplash.com/photos/fcOaa6j4cUo | Jovan Vasiljević |
 | P-10 surroundings | `public/images/test-p10-surroundings.webp` | https://unsplash.com/photos/k3BbV6r_gb4 | Shpëtim Ujkani |
+
+## Guest reviews per room
+
+Each room card can show guest reviews ("Çfarë thonë mysafirët" / "What guests say"). They live in `src/reviews.ts`, one list per room (double, triple, quadruple, apartment, villa). A room with an empty list shows no review block, which is the current state: **no reviews are published yet**.
+
+Only add **real** reviews, copied word for word, with the guest's permission or from a platform whose terms allow reuse, and fill in `source` (for example `Google`, `Booking.com` or `direct`). Never write, translate into "better" wording, or invent reviews: fake reviews are illegal for businesses under EU consumer law. One or two short reviews per room keep the cards tidy.

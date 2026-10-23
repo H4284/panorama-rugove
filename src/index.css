@@ -208,7 +208,34 @@ nav a:hover, .language:hover { text-decoration: underline; }
   gap: 26px;
   padding: 28px;
 }
-.card-link { display: inline-flex; min-height: 44px; align-items: center; font-weight: 700; }
+/* Room CTA: a solid button with an arrow, so it reads as the card's main action. */
+.card-link {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  gap: 10px;
+  border-radius: var(--radius-sm);
+  padding: 12px 22px;
+  color: var(--white);
+  background: var(--green);
+  box-shadow: 0 6px 16px -8px rgba(47, 74, 63, 0.6);
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color var(--ease), box-shadow var(--ease);
+}
+.card-link::after { content: "→"; transition: transform var(--ease); }
+.card-link:hover { background: #24392f; box-shadow: 0 8px 20px -8px rgba(47, 74, 63, 0.7); }
+.card-link:hover::after { transform: translateX(4px); }
+/* Guest reviews inside a room card (only rendered when real reviews exist). */
+.room-reviews { display: flex; width: 100%; flex-direction: column; gap: 16px; border-top: 1px solid var(--line); padding-top: 20px; }
+.room-reviews-title { margin: 0; color: var(--accent-text); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.room-review { margin: 0; }
+.room-review blockquote { margin: 0; }
+.room-review blockquote p { margin: 0; font-family: "Fraunces", serif; font-size: 1.05rem; font-style: italic; line-height: 1.5; }
+.room-review figcaption { margin-top: 8px; font-size: 0.85rem; font-weight: 650; }
+.review-source { color: rgba(46, 42, 37, 0.65); font-weight: 400; }
+.review-stars { margin: 0 0 6px; color: var(--accent); font-size: 0.95rem; letter-spacing: 0.12em; }
+.review-stars span { color: rgba(46, 42, 37, 0.2); }
 .tag {
   display: inline-flex;
   min-height: 28px;
@@ -346,6 +373,7 @@ footer {
   .room-grid { grid-template-columns: 1fr; }
   .room-card, .room-card:nth-child(4), .room-card:nth-child(5) { grid-column: span 1; }
   .room-card .photo { min-height: 230px; }
+  .card-link { align-self: stretch; justify-content: center; }
   .form-grid { grid-template-columns: 1fr; }
   .wide { grid-column: auto; }
   .checkbox .error { grid-column: 2; }
@@ -380,5 +408,5 @@ footer {
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .button, .menu-toggle, .site-header:not(.simple-header) { transition: none; }
+  .button, .menu-toggle, .site-header:not(.simple-header), .card-link, .card-link::after { transition: none; }
 }
