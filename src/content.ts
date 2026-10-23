@@ -40,6 +40,9 @@ export const copy = {
       email: "Email (opsional)", message: "Mesazhi (opsional)", consentBefore: "Pajtohem me ",
       consentLink: "politikën e privatësisë.", submit: "Dërgo kërkesën",
       alt: "Ose dërgojeni në WhatsApp",
+      // Added in step 4 — client to review the Albanian wording.
+      sending: "Duke dërguar…",
+      error: "Kërkesa nuk u dërgua. Provoni përsëri, ose dërgojeni në WhatsApp.",
       success: "Faleminderit! Kërkesa juaj u dërgua. Nëse doni, dërgojeni edhe në WhatsApp.",
     },
     errors: {
@@ -95,6 +98,7 @@ export const copy = {
       lines: [
         "Kjo faqe i përket Hotel Restaurant Panorama-Rugovë, [EMRI LIGJOR DHE NUI — për t'u plotësuar, U-04].",
         "Kur na dërgoni një kërkesë, mbledhim emrin, telefonin, emailin (nëse e jepni), datat, numrin e personave dhe mesazhin tuaj.",
+        "Kërkesat nga formulari na dorëzohen me email përmes shërbimit EmailJS. ⚑",
         "I përdorim vetëm për t'iu përgjigjur kërkesës suaj. Nuk i shesim dhe nuk ua japim të tjerëve për marketing.",
         "Nëse na shkruani në WhatsApp, mesazhi juaj kalon përmes shërbimit WhatsApp.",
         "Për të parë ose fshirë të dhënat tuaja, shkruani te hotelpanorama03@gmail.com.",
@@ -142,6 +146,7 @@ export const copy = {
       name: "Full name", phone: "Phone (with WhatsApp, if you have it)", email: "Email (optional)",
       message: "Message (optional)", consentBefore: "I agree to the ", consentLink: "privacy policy.",
       submit: "Send request", alt: "Or send it on WhatsApp",
+      sending: "Sending…", error: "Your request couldn't be sent. Please try again, or send it on WhatsApp.",
       success: "Thank you! Your request has been sent. If you like, send it on WhatsApp too.",
     },
     errors: {
@@ -188,6 +193,7 @@ export const copy = {
       lines: [
         "This website belongs to Hotel Restaurant Panorama-Rugovë, [LEGAL NAME AND NUI — to be added, U-04].",
         "When you send a request, we collect your name, phone, email (if given), dates, number of guests and your message.",
+        "Requests sent through the form are delivered to us by email through the EmailJS service. ⚑",
         "We use them only to answer your request. We never sell them or share them with others for marketing.",
         "If you message us on WhatsApp, your message goes through the WhatsApp service.",
         "To see or delete your data, write to hotelpanorama03@gmail.com.",

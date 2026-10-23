@@ -241,6 +241,9 @@ textarea { min-height: 116px; resize: vertical; }
 .checkbox .error { grid-column: 2; }
 .error { color: var(--tag); font-size: 0.8rem; }
 .form-actions { margin-top: 30px; }
+.form-actions .button:disabled { cursor: progress; opacity: 0.8; }
+.form-error { margin: 26px 0 0; font-size: 0.95rem; }
+.form-trap { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 .form-actions .button, .success-panel .button { border-color: var(--white); color: var(--green); background: var(--white); }
 .form-actions a:not(.button) { display: inline-flex; min-height: 48px; align-items: center; color: var(--white); }
 .success-panel { align-self: start; border: 1px solid var(--white); border-radius: 2px; padding: clamp(28px, 4vw, 56px); }

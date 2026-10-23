@@ -1,6 +1,7 @@
 import { FormEvent, useMemo, useState } from "react";
 import { copy, type Language } from "@/content";
 import { privacyPath, whatsapp } from "@/lib/links";
+import { sendRequest } from "@/lib/sendRequest";
 
 type FormValues = { arrival: string; departure: string; adults: string; children: string; type: string; name: string; phone: string; email: string; message: string; consent: boolean };
 const initialForm: FormValues = { arrival: "", departure: "", adults: "", children: "", type: "", name: "", phone: "", email: "", message: "", consent: false };
@@ -17,6 +18,9 @@ export default function StayForm({ language }: { language: Language }) {
   const [values, setValues] = useState(initialForm);
   const [errors, setErrors] = useState<Partial<Record<keyof FormValues, string>>>({});
   const [success, setSuccess] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");
+  // Honeypot: hidden from people, often filled in by bots.
+  const [trap, setTrap] = useState("");
   const todayIso = toIsoDate(new Date());
   // Empty form → the general WhatsApp greeting; otherwise the request template with "?" for unfilled slots.
   const formMessage = useMemo(() => {
@@ -30,8 +34,10 @@ export default function StayForm({ language }: { language: Language }) {
     setErrors((current) => ({ ...current, [name]: undefined }));
   }
 
-  function submit(event: FormEvent<HTMLFormElement>) {
+  async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (status === "sending") return;
+    if (trap) { setSuccess(true); return; }
     const next: Partial<Record<keyof FormValues, string>> = {};
     (["arrival", "departure", "adults", "children", "type", "name", "phone", "consent"] as (keyof FormValues)[]).forEach((field) => {
       const value = values[field];
@@ -45,7 +51,19 @@ export default function StayForm({ language }: { language: Language }) {
     if (values.phone.trim() && (!/^[+()\d\s-]+$/.test(values.phone.trim()) || values.phone.replace(/\D/g, "").length < 6)) next.phone = t.errors.phone;
     if (values.email.trim() && !emailPattern.test(values.email.trim())) next.email = t.errors.email;
     setErrors(next);
-    if (Object.keys(next).length === 0) setSuccess(true);
+    if (Object.keys(next).length > 0) return;
+    setStatus("sending");
+    try {
+      await sendRequest({
+        language, arrival: values.arrival, departure: values.departure, adults: values.adults, children: values.children,
+        stay_type: values.type, name: values.name.trim(), phone: values.phone.trim(), email: values.email.trim(),
+        message: values.message.trim(), consent: values.consent ? "yes" : "no",
+      });
+      setSuccess(true);
+    } catch (error) {
+      console.error("Room request could not be sent:", error);
+      setStatus("error");
+    }
   }
 
   const invalidProps = (name: keyof FormValues) => ({ "aria-invalid": Boolean(errors[name]), "aria-describedby": errors[name] ? errorId(name) : undefined });
@@ -63,5 +81,6 @@ export default function StayForm({ language }: { language: Language }) {
     <label><span>{t.form.type}</span><select value={values.type} onChange={(event) => update("type", event.target.value)} {...invalidProps("type")} required><option value="" disabled />{t.form.types.map((type) => <option key={type}>{type}</option>)}</select>{errorText("type")}</label>
     {field("name", t.form.name)}{field("phone", t.form.phone, "tel")}{field("email", t.form.email, "email", true)}{field("message", t.form.message, "text", true)}
     <label className="checkbox wide"><input type="checkbox" checked={values.consent} onChange={(event) => update("consent", event.target.checked)} {...invalidProps("consent")} required /><span>{t.form.consentBefore}<a href={privacyPath(language)} target="_blank" rel="noopener">{t.form.consentLink}</a></span>{errorText("consent")}</label>
-  </div><div className="form-actions"><button className="button" type="submit">{t.form.submit}</button><a href={whatsapp(formMessage)}>{t.form.alt}</a></div></form>;
+    <div className="form-trap" aria-hidden="true"><label>Website<input type="text" name="website" tabIndex={-1} autoComplete="off" value={trap} onChange={(event) => setTrap(event.target.value)} /></label></div>
+  </div>{status === "error" && <p className="error form-error" role="alert">{t.form.error}</p>}<div className="form-actions"><button className="button" type="submit" disabled={status === "sending"} aria-busy={status === "sending"}>{status === "sending" ? t.form.sending : t.form.submit}</button><a href={whatsapp(formMessage)}>{t.form.alt}</a></div></form>;
 }
